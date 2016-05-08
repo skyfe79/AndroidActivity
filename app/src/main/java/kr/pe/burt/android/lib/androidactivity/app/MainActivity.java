@@ -50,7 +50,7 @@ public class MainActivity extends AndroidActivity {
         return " [button] :: Left = " + button.getLeft() + ", Top = " + button.getTop() + ", Width = " + button.getWidth() + ", Height = " + button.getHeight();
     }
 
-    void onButtonClicked(View sender) {
+    public void onButtonClicked(View sender) {
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
