@@ -79,4 +79,56 @@ You can get the size of view and the position of view on the viewDidLayout, view
 
  1. viewWillAppear
 
+## How to use AndroidActivity?
+
+You just inherit AndroidActivity and override above methods.
+
+```java
+public class MainActivity extends AndroidActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void viewDidLoad() {
+        Log.v(TAG, "viewDidLoad " + buttonGeometryInfo());
+    }
+
+    @Override
+    protected void viewDidLayout() {
+        Log.v(TAG, "viewDidLayout " + buttonGeometryInfo());
+    }
+
+    @Override
+    protected void viewWillAppear() {
+        Log.v(TAG, "viewWillAppear " + buttonGeometryInfo());
+    }
+
+
+    @Override
+    protected void viewWillDisappear() {
+        Log.v(TAG, "viewWillDisappear " + buttonGeometryInfo());
+    }
+
+    @Override
+    protected void viewDidDisappear() {
+        Log.v(TAG, "viewDidDisappear " + buttonGeometryInfo());
+    }
+
+    private String buttonGeometryInfo() {
+        Button button = (Button) findViewById(R.id.button);
+        return " [button] :: Left = " + button.getLeft() + ", Top = " + button.getTop() + ", Width = " + button.getWidth() + ", Height = " + button.getHeight();
+    }
+
+    void onButtonClicked(View sender) {
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
+    }
+}
+```
  
