@@ -14,8 +14,11 @@ If you find some simple method, AndroidActivity is the solution.
 
 ## Setup Gradle
 
-```
-
+```groovy
+dependencies {
+    ...
+    compile 'kr.pe.burt.android.lib:androidactivity:0.0.1'
+}
 ```
 
 ## Bye Bye ViewTreeObserver
