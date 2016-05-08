@@ -1,8 +1,10 @@
 package kr.pe.burt.android.lib.androidactivity.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import kr.pe.burt.android.lib.androidactivity.AndroidActivity;
 
@@ -19,36 +21,37 @@ public class MainActivity extends AndroidActivity {
     @Override
     protected void viewDidLoad() {
 
-        Log.v(TAG, "viewDidLoad " + textViewGeometryInfo());
+        Log.v(TAG, "viewDidLoad " + buttonGeometryInfo());
     }
 
     @Override
     protected void viewDidLayout() {
-        Log.v(TAG, "viewDidLayout " + textViewGeometryInfo());
+        Log.v(TAG, "viewDidLayout " + buttonGeometryInfo());
     }
 
     @Override
     protected void viewWillAppear() {
-        Log.v(TAG, "viewWillAppear " + textViewGeometryInfo());
+        Log.v(TAG, "viewWillAppear " + buttonGeometryInfo());
     }
 
-    @Override
-    protected void viewDidAppear() {
-        Log.v(TAG, "viewDidAppear " + textViewGeometryInfo());
-    }
 
     @Override
     protected void viewWillDisappear() {
-        Log.v(TAG, "viewWillDisappear " + textViewGeometryInfo());
+        Log.v(TAG, "viewWillDisappear " + buttonGeometryInfo());
     }
 
     @Override
     protected void viewDidDisappear() {
-        Log.v(TAG, "viewDidDisappear " + textViewGeometryInfo());
+        Log.v(TAG, "viewDidDisappear " + buttonGeometryInfo());
     }
 
-    private String textViewGeometryInfo() {
-        TextView textView = (TextView) findViewById(R.id.text);
-        return " [textView] :: Left = " + textView.getLeft() + ", Top = " + textView.getTop() + ", Width = " + textView.getWidth() + ", Height = " + textView.getHeight();
+    private String buttonGeometryInfo() {
+        Button button = (Button) findViewById(R.id.button);
+        return " [button] :: Left = " + button.getLeft() + ", Top = " + button.getTop() + ", Width = " + button.getWidth() + ", Height = " + button.getHeight();
+    }
+
+    void onButtonClicked(View sender) {
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
     }
 }

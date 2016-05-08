@@ -108,9 +108,6 @@ public class AndroidActivity extends AppCompatActivity {
     protected void viewWillAppear() {
     }
 
-    protected void viewDidAppear() {
-    }
-
     protected void viewWillDisappear() {
     }
 
