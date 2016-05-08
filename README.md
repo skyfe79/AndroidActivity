@@ -1,4 +1,7 @@
+
 # AndroidActivity
+
+![](art/logo.png)
 
 There are many questions about timing for finding Android's view size.
 
