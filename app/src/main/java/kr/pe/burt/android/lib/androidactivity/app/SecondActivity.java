@@ -1,11 +1,10 @@
 package kr.pe.burt.android.lib.androidactivity.app;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import kr.pe.burt.android.lib.androidactivity.AndroidActivity;
+import kr.pe.burt.android.lib.androidactivity.AndroidAppCompatActivity;
 
-public class SecondActivity extends AndroidActivity {
+public class SecondActivity extends AndroidAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

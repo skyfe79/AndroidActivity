@@ -1,16 +1,14 @@
 package kr.pe.burt.android.lib.androidactivity;
 
-import android.app.Activity;
 import android.os.Build;
 import android.support.annotation.LayoutRes;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
-/**
- * Created by burt on 2016. 5. 13..
- */
-public class AndroidActivity extends Activity {
+public class AndroidAppCompatActivity extends AppCompatActivity {
+
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
