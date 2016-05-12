@@ -6,9 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import kr.pe.burt.android.lib.androidactivity.AndroidActivity;
+import kr.pe.burt.android.lib.androidactivity.AndroidAppCompatActivity;
 
-public class MainActivity extends AndroidActivity {
+public class MainActivity extends AndroidAppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
