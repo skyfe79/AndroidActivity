@@ -17,10 +17,15 @@ If you find some simple method, AndroidActivity is the solution.
 ```groovy
 dependencies {
     ...
-    compile 'kr.pe.burt.android.lib:androidactivity:0.0.1'
+    compile 'kr.pe.burt.android.lib:androidactivity:0.0.2'
 }
 ```
+## Activities
+ 
+ * AndroidAppCompatActivity extends AppCompatActivity
+ * AndroidActivity extends Activity
 
+ 
 ## Bye Bye ViewTreeObserver
 
 AndroidActivity provides lifecycle callback methods from the aspect of view. If you use these callback methods, you don't have to use ViewTreeObserver. 
