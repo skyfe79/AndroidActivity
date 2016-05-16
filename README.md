@@ -147,7 +147,7 @@ public class MainActivity extends AndroidActivity {
 
 You don't need to set the proprty `android:windowSoftInputMode="adjustResize"` in the AndroidManifest.xml file. You just inherit AndroidActivity and override `keyboardDidAppear` and `keyboardDidDisappear` methods.
 
-```
+```java
 private int lastKeyboardHeight = 0;
 
 @Override
