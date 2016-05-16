@@ -11,6 +11,7 @@ import kr.pe.burt.android.lib.androidactivity.AndroidAppCompatActivity;
 public class MainActivity extends AndroidAppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private int lastKeyboardHeight = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,9 @@ public class MainActivity extends AndroidAppCompatActivity {
     @Override
     protected void viewWillDisappear() {
         Log.v(TAG, "viewWillDisappear " + buttonGeometryInfo());
+        if(lastKeyboardHeight != 0) {
+            scrollDown();
+        }
     }
 
     @Override
@@ -55,13 +59,28 @@ public class MainActivity extends AndroidAppCompatActivity {
         startActivity(intent);
     }
 
+
     @Override
     public void keyboardDidAppear(int keyboardHeight) {
         Log.v("TAG", "MainActivity : keyboardDidAppear");
+        scrollUp(keyboardHeight);
     }
 
     @Override
     public void keyboardDidDisappear() {
         Log.v("TAG", "MainActivity : keyboardDidDisappear");
+        scrollDown();
+    }
+
+    private void scrollUp(int keyboardHeight) {
+        View layout = findViewById(R.id.layout);
+        layout.scrollBy(0, keyboardHeight/2);
+        lastKeyboardHeight = keyboardHeight/2;
+    }
+
+    private void scrollDown() {
+        View layout = findViewById(R.id.layout);
+        layout.scrollBy(0, -lastKeyboardHeight);
+        lastKeyboardHeight = 0;
     }
 }
