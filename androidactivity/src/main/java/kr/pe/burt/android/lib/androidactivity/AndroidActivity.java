@@ -11,6 +11,10 @@ import android.view.ViewTreeObserver;
  * Created by burt on 2016. 5. 13..
  */
 public class AndroidActivity extends Activity {
+
+    private SoftKeyboardHelper softKeyboardHelper = null;
+
+
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
@@ -41,12 +45,30 @@ public class AndroidActivity extends Activity {
     protected void onResume() {
         super.onResume();
         listenPreDrawEvent();
+
+        softKeyboardHelper = new SoftKeyboardHelper();
+        softKeyboardHelper.listenSoftKeyboardEvent(getWindow().getDecorView().getRootView(), new SoftKeyboardHelper.AppearCallback() {
+            @Override
+            public void callback(int keyboardHeight) {
+                keyboardDidAppear(keyboardHeight);
+            }
+        }, new SoftKeyboardHelper.DisappearCallback() {
+            @Override
+            public void callback() {
+                keyboardDidDisappear();
+            }
+        });
     }
 
     @Override
     protected void onPause() {
         viewWillDisappear();
         super.onPause();
+
+        if(softKeyboardHelper != null) {
+            softKeyboardHelper.removeListenerForSoftKeyboardEvent();
+            softKeyboardHelper = null;
+        }
     }
 
     @Override
@@ -114,5 +136,11 @@ public class AndroidActivity extends Activity {
     }
 
     protected void viewDidDisappear() {
+    }
+
+    protected void keyboardDidAppear(int keyboardHeight) {
+    }
+
+    protected void keyboardDidDisappear() {
     }
 }
