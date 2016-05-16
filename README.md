@@ -19,7 +19,7 @@ If you find some simple method, AndroidActivity is the solution.
 ```groovy
 dependencies {
     ...
-    compile 'kr.pe.burt.android.lib:androidactivity:0.0.2'
+    compile 'kr.pe.burt.android.lib:androidactivity:0.0.3'
 }
 ```
 ## Activities
