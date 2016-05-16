@@ -54,4 +54,14 @@ public class MainActivity extends AndroidAppCompatActivity {
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void keyboardDidAppear(int keyboardHeight) {
+        Log.v("TAG", "MainActivity : keyboardDidAppear");
+    }
+
+    @Override
+    public void keyboardDidDisappear() {
+        Log.v("TAG", "MainActivity : keyboardDidDisappear");
+    }
 }
