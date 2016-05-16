@@ -3,10 +3,12 @@
 
 ![](art/logo.png)
 
-There are many questions about timing for finding Android's view size.
+There are many questions about timing for finding Android's view size and detecting appear or disappear of soft keyboard.
 
  * When can I get android's view size?
  * How to find view width and height before it's drawn?
+ * How to detect appear and disappear of soft keyboad?
+ * How to get the keyboard size?
 
 If you want to find view size in an activity, using ViewTreeObserver is the answer. However, you have to write some dirty code to use ViewTreeObserver. 
 
@@ -40,6 +42,10 @@ AndroidActivity provides lifecycle callback methods from the aspect of view. If 
  * Called when the view is about to disappear. 
 * viewDidDisappear
  * Called when the view is disappeared.  
+* keyboardDidAppear
+ * Called when the soft keyboard is appear with keyboard's height in pixel.
+* keyboardDidDisappear
+ * Called when the soft keyboard is disappear.   
 
 It is similar to the lifecycle of view which is in UIViewController on the iOS.
 
@@ -134,6 +140,38 @@ public class MainActivity extends AndroidActivity {
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
+}
+```
+
+## How to use keyboard callbacks?
+
+You don't need to set the proprty `android:windowSoftInputMode="adjustResize"` in the AndroidManifest.xml file. You just inherit AndroidActivity and override `keyboardDidAppear` and `keyboardDidDisappear` methods.
+
+```
+private int lastKeyboardHeight = 0;
+
+@Override
+public void keyboardDidAppear(int keyboardHeight) {
+    Log.v("TAG", "MainActivity : keyboardDidAppear");
+    scrollUp(keyboardHeight);
+}
+
+@Override
+public void keyboardDidDisappear() {
+    Log.v("TAG", "MainActivity : keyboardDidDisappear");
+    scrollDown();
+}
+
+private void scrollUp(int keyboardHeight) {
+    View layout = findViewById(R.id.layout);
+    layout.scrollBy(0, keyboardHeight/2);
+    lastKeyboardHeight = keyboardHeight/2;
+}
+
+private void scrollDown() {
+    View layout = findViewById(R.id.layout);
+    layout.scrollBy(0, -lastKeyboardHeight);
+    lastKeyboardHeight = 0;
 }
 ```
 
