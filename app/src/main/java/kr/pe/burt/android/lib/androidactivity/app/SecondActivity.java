@@ -14,8 +14,8 @@ public class SecondActivity extends AndroidAppCompatActivity {
     }
 
     @Override
-    public void keyboardDidAppear(int keyboardHeight) {
-        Log.d("TAG", "keyboardDidAppear : " + keyboardHeight);
+    public void keyboardDidAppear() {
+        Log.d("TAG", "keyboardDidAppear");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package kr.pe.burt.android.lib.androidactivity;
 
+import android.app.Service;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,10 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 
 public class AndroidAppCompatActivity extends AppCompatActivity {
 
     private SoftKeyboardHelper softKeyboardHelper = null;
+    private SoftKeyboard softKeyboard = null;
 
 
     @Override
@@ -52,18 +55,34 @@ public class AndroidAppCompatActivity extends AppCompatActivity {
         super.onResume();
         listenPreDrawEvent();
 
-        softKeyboardHelper = new SoftKeyboardHelper();
-        softKeyboardHelper.listenSoftKeyboardEvent(getWindow().getDecorView().getRootView(), new SoftKeyboardHelper.AppearCallback() {
+        ViewGroup viewGroup = (ViewGroup) findViewById(android.R.id.content);
+        InputMethodManager im = (InputMethodManager) getSystemService(Service.INPUT_METHOD_SERVICE);
+        softKeyboard = new SoftKeyboard(viewGroup, im);
+
+        softKeyboard.setSoftKeyboardCallback(new SoftKeyboard.SoftKeyboardChanged() {
             @Override
-            public void callback(int keyboardHeight) {
-                keyboardDidAppear(keyboardHeight);
-            }
-        }, new SoftKeyboardHelper.DisappearCallback() {
-            @Override
-            public void callback() {
+            public void onSoftKeyboardHide() {
                 keyboardDidDisappear();
             }
+
+            @Override
+            public void onSoftKeyboardShow() {
+                keyboardDidAppear();
+            }
         });
+
+//        softKeyboardHelper = new SoftKeyboardHelper();
+//        softKeyboardHelper.listenSoftKeyboardEvent(getWindow().getDecorView().getRootView(), new SoftKeyboardHelper.AppearCallback() {
+//            @Override
+//            public void callback(int keyboardHeight) {
+//                keyboardDidAppear(keyboardHeight);
+//            }
+//        }, new SoftKeyboardHelper.DisappearCallback() {
+//            @Override
+//            public void callback() {
+//                keyboardDidDisappear();
+//            }
+//        });
     }
 
     @Override
@@ -71,10 +90,15 @@ public class AndroidAppCompatActivity extends AppCompatActivity {
         viewWillDisappear();
         super.onPause();
 
-        if(softKeyboardHelper != null) {
-            softKeyboardHelper.removeListenerForSoftKeyboardEvent();
-            softKeyboardHelper = null;
+        if(softKeyboard != null) {
+            softKeyboard.unRegisterSoftKeyboardCallback();
+            softKeyboard = null;
         }
+
+//        if(softKeyboardHelper != null) {
+//            softKeyboardHelper.removeListenerForSoftKeyboardEvent();
+//            softKeyboardHelper = null;
+//        }
     }
 
     @Override
@@ -146,7 +170,7 @@ public class AndroidAppCompatActivity extends AppCompatActivity {
     protected void viewDidDisappear() {
     }
 
-    protected void keyboardDidAppear(int keyboardHeight) {
+    protected void keyboardDidAppear() {
     }
 
     protected void keyboardDidDisappear() {

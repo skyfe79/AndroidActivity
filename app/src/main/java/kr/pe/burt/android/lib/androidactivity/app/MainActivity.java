@@ -61,9 +61,9 @@ public class MainActivity extends AndroidAppCompatActivity {
 
 
     @Override
-    public void keyboardDidAppear(int keyboardHeight) {
+    public void keyboardDidAppear() {
         Log.v("TAG", "MainActivity : keyboardDidAppear");
-        scrollUp(keyboardHeight);
+        scrollUp(0);
     }
 
     @Override

@@ -14,7 +14,7 @@ publish {
     userOrg = 'skyfe79'
     groupId = 'kr.pe.burt.android.lib'
     artifactId = 'androidactivity'
-    publishVersion = '0.0.3'
+    publishVersion = '0.0.4'
     desc = 'AndroidActivity provides lifecycle callback methods from the aspect of view.'
     website = 'https://github.com/skyfe79/AndroidActivity'
 }
@@ -26,8 +26,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode 3
-        versionName "0.0.3"
+        versionCode 4
+        versionName "0.0.4"
     }
     buildTypes {
         release {
